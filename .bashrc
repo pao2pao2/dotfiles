@@ -169,6 +169,7 @@ set_prompt() {
     fi
 
 	PS1="${face} ${gray}\D{%Y-%m-%d} \t:${path}${git_branch}\n${greenyellow}$ ${reset}"
+	#PS1="${greenyellow}$ ${reset}"
 }
 
 PROMPT_COMMAND=set_prompt
@@ -176,56 +177,68 @@ PROMPT_COMMAND=set_prompt
 
 # my functions
 
-srcb () {
+# alias
+
+bye() {
+    echo "(o_o) < Bye bye!";
+    sleep 1s;
+    exit;
+}
+
+cl() {
+    iconv -t utf16 | clip.exe;
+}
+
+srcb() {
     source ~/.bashrc;
 }
 
-chk () {
+chk() {
 	gcc -std=c11 -Wall -fsyntax-only "$1";
 }
 
 # clip
 
-cacl () {
+cacl() {
     cat "$1" | clip.exe;
 }
 
 # git
-log () {
-	git log --pretty=format:"%h %cd %s" --date=short \
+log() {
+	git log --pretty=format:"%h %cd %s" --date=format:'%Y-%m-%d %H:%M:%S' \
 	| nl -v 0 -w2 -s ' ' \
 	| less -F -X;
 }
 
-diff () {
+diff() {
     git diff;
 }
 
-df () {
+df() {
     git diff;
 }
 
-dfn () {
+dfn() {
     git diff --name-only;
 }
 
-dfc () {
+dfc() {
     git diff --cached;
 }
 
-dfcn () {
+dfcn() {
     git diff --cached --name-only;
 }
 
-add () {
+add() {
 	git add "$1";
 }
 
-com () {
+com() {
 	git commit -m "$1";
 }
 
-show () {
+show() {
 	git show "HEAD~$1";
 }
 
